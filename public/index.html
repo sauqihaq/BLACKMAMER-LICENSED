@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Kontrol Server · Indo Universe</title>
+  <link rel="stylesheet" href="/app.css">
+</head>
+<body>
+
+  <main id="login" class="login" hidden>
+    <form id="loginForm" class="login-card" autocomplete="off">
+      <h1>Kontrol Server</h1>
+      <p class="muted">Masuk untuk mengatur game Indo Universe.</p>
+      <label for="password">Password admin</label>
+      <input id="password" type="password" autocomplete="current-password" required>
+      <p id="loginError" class="error" role="alert" hidden></p>
+      <button class="btn" type="submit">Masuk</button>
+    </form>
+  </main>
+
+  <div id="app" hidden>
+    <section id="status" class="status" data-state="open" aria-live="polite">
+      <div class="wrap status-grid">
+        <div>
+          <p class="status-kicker">Indo Universe</p>
+          <h1 id="statusLabel" class="status-label">Memuat…</h1>
+          <p id="statusSub" class="status-sub"></p>
+        </div>
+
+        <form id="lockForm" class="lock-form">
+          <div id="lockOpen">
+            <label for="lockMessage">Pesan untuk pemain</label>
+            <textarea id="lockMessage" rows="2" maxlength="200"></textarea>
+            <div class="row">
+              <div class="field">
+                <label for="lockDelay">Kapan dikunci</label>
+                <select id="lockDelay">
+                  <option value="0">Sekarang</option>
+                  <option value="1">1 menit lagi</option>
+                  <option value="5">5 menit lagi</option>
+                  <option value="15">15 menit lagi</option>
+                  <option value="60">1 jam lagi</option>
+                </select>
+              </div>
+              <button id="lockBtn" class="btn" type="submit">Kunci game</button>
+            </div>
+          </div>
+          <div id="lockClosed" hidden>
+            <button id="unlockBtn" class="btn" type="button">Buka kunci game</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <header class="wrap bar">
+      <span class="muted">Panel kontrol server</span>
+      <button id="logout" class="link" type="button">Keluar</button>
+    </header>
+
+    <div class="wrap columns">
+      <section class="block" aria-labelledby="serversTitle">
+        <div class="block-head">
+          <h2 id="serversTitle">Server yang hidup</h2>
+          <button id="kickBtn" class="btn small danger" type="button">Tendang semua pemain</button>
+        </div>
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr><th scope="col">Server</th><th scope="col">Pemain</th><th scope="col">Lapor terakhir</th><th scope="col">Versi</th></tr>
+            </thead>
+            <tbody id="serverRows"></tbody>
+          </table>
+        </div>
+        <p id="serversEmpty" class="empty" hidden>Belum ada server yang lapor. Server muncul di sini beberapa detik setelah game jalan dan script RemoteControl terhubung.</p>
+      </section>
+
+      <section class="block" aria-labelledby="featuresTitle">
+        <div class="block-head">
+          <h2 id="featuresTitle">Fitur game</h2>
+        </div>
+        <ul id="featureList" class="features"></ul>
+        <p id="featuresEmpty" class="empty" hidden>Daftar fitur diambil dari script RemoteControl di game. Muncul otomatis setelah ada server yang lapor.</p>
+      </section>
+    </div>
+
+    <section class="wrap block log" aria-labelledby="logTitle">
+      <div class="block-head"><h2 id="logTitle">Riwayat tindakan</h2></div>
+      <ul id="auditList"></ul>
+    </section>
+  </div>
+
+  <dialog id="confirm" class="dialog">
+    <form method="dialog">
+      <h2 id="cTitle"></h2>
+      <p id="cText"></p>
+      <div id="cField" hidden>
+        <label for="cInput">Pesan untuk pemain</label>
+        <textarea id="cInput" rows="2" maxlength="200"></textarea>
+      </div>
+      <div class="dialog-actions">
+        <button class="btn ghost" value="cancel">Batal</button>
+        <button id="cOk" class="btn" value="ok"></button>
+      </div>
+    </form>
+  </dialog>
+
+  <p id="toast" class="toast" role="status" hidden></p>
+
+  <script src="/app.js"></script>
+</body>
+</html>

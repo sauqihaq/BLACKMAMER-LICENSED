@@ -1,0 +1,10 @@
+{
+  "name": "indo-universe-kontrol",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Panel kontrol server untuk game Roblox Indo Universe (Netlify Functions + Blobs)",
+  "type": "module",
+  "scripts": { "test": "node tests/test-core.mjs" },
+  "engines": { "node": ">=18" },
+  "dependencies": { "@netlify/blobs": "^8.1.0" }
+}
